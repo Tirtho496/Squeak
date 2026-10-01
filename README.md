@@ -110,21 +110,3 @@ See [the security notes](docs/security.md) for implemented protections and remai
 
 For a manual smoke test, register two disposable users in separate profiles, post one public message and one private message, confirm the private message appears only in its recipient's inbox, and verify sign-out. In the patched app, confirm a missing CSRF token returns 403 and a modified session cookie does not authenticate. A message containing `</script>` should display as text.
 
-## Publishing
-
-The local `unpatched/` coursework directory, dependencies, `.env` files, TLS material, packaged archives, original reports, and attack screenshots are ignored. Only the patched application and its documentation are included in the publication files. The original coursework stays local because its binary contents and screenshots have not been cleared for publication. Dependency lockfiles and `.env.example` files should be committed.
-
-Before the first push, rotate the database credential previously present in the original source and local connection-string file, and retire the old TLS key. Removing a credential from source does not revoke it. Review the staged file list and diff before committing. This folder originally had no Git metadata; if you publish through an existing repository, inspect that repository's history separately for old secrets.
-
-```powershell
-git init
-git add .
-git diff --cached --stat
-git diff --cached
-git commit -m "Prepare patched Squeak portfolio application"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
-git push -u origin main
-```
-
-Create an empty GitHub repository first and substitute its URL. No license is asserted here: confirm the coursework's source ownership and redistribution terms before adding a license or republishing assignment materials.
