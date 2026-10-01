@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Squeak! - Timeline</title>
+    <meta name="csrf-token" content="{{csrf}}" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-page="app">
+    <header class="hero">
+      <h1>Squeak!</h1>
+      <p>Public squeaks and private squeals for the whole crew.</p>
+    </header>
+
+    <main>
+      <section class="status-card card">
+        <div>
+          <p id="session-info">
+            Signed in as <strong id="session-user">{{username}}</strong>
+          </p>
+        </div>
+        <button id="logout-btn" class="ghost" type="button">Log out</button>
+      </section>
+
+      <section class="card">
+        <div id="flash" role="status" aria-live="assertive"></div>
+      </section>
+
+      <section class="card" id="squeak-panel">
+        <div class="panel-header">
+          <h2>Share a squeak or squeal</h2>
+          <span id="squeak-counter">0 / 280</span>
+        </div>
+        <form id="squeak-form" method="post" action="/squeak">
+          <div class="input-row">
+            <label>
+              Send to
+              <select name="recipient" id="recipient-select">
+                <option value="all">@ Everyone</option>
+                {{#users}}
+                <option value="{{username}}">@ {{username}}</option>
+                {{/users}}
+              </select>
+            </label>
+          </div>
+          <textarea
+            name="squeak"
+            id="squeak-content"
+            rows="3"
+            maxlength="280"
+            placeholder="What's going on?"
+            required
+          ></textarea>
+          <button type="submit">Post</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="panel-header">
+          <h2>Public squeaks</h2>
+          <button id="refresh-btn" class="ghost" type="button">Refresh</button>
+        </div>
+        <ul id="squeaks-public" aria-live="polite">
+          {{#squeaks}}
+          <li class="squeak">
+            <div class="squeak-meta">
+              <strong class="squeak-user">{{name}}</strong>
+              <time>{{time}}</time>
+              <span class="recipient">@{{recipient}}</span>
+            </div>
+            <p class="squeak-body">{{squeak}}</p>
+          </li>
+          {{/squeaks}}
+          {{^squeaks}}
+          <li class="squeak">No squeaks yet. Be the first one!</li>
+          {{/squeaks}}
+        </ul>
+      </section>
+
+      <section class="card">
+        <div class="panel-header">
+          <h2>Your squeals</h2>
+        </div>
+        <ul id="squeaks-private" aria-live="polite">
+          {{#squeals}}
+          <li class="squeak">
+            <div class="squeak-meta">
+              <strong class="squeak-user">{{name}}</strong>
+              <time>{{time}}</time>
+              <span class="recipient">@{{recipient}}</span>
+            </div>
+            <p class="squeak-body">{{squeak}}</p>
+          </li>
+          {{/squeals}}
+          {{^squeals}}
+          <li class="squeak">No private squeals for you yet.</li>
+          {{/squeals}}
+        </ul>
+      </section>
+    </main>
+
+    <script>
+      window._squeakUsers = {{{usersJson}}};
+      window._initialSqueaks = {{{squeaksJson}}};
+      window._initialSqueals = {{{squealsJson}}};
+    </script>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

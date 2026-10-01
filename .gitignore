@@ -1,0 +1,27 @@
+# Local dependencies and runtime files
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+coverage/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+# TLS credentials and connection exports
+**/cert/
+*.key
+*.pem
+*.crt
+mongo_connection_string.txt
+# Original coursework and unreviewed evidence remain local
+/temp/
+/NoSQL injection attack/
+*.tgz
+*.zip
+*.docx
+*.pdf
+
+# Vulnerable coursework baseline stays local
+/unpatched/

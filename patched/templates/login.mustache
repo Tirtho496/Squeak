@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Squeak! - Sign in</title>
+    <meta name="csrf-token" content="{{csrf}}" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-page="login">
+    <header class="hero">
+      <h1>Squeak!</h1>
+      <p>Welcome back - sign in or create an account to start squeaking and squealing.</p>
+    </header>
+
+    <main>
+      <section class="card status-card">
+        <div id="flash" role="status" aria-live="assertive"></div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Create an account</h2>
+          <form id="register-form" autocomplete="off">
+            <label>
+              Username
+              <input type="text" name="username" minlength="3" maxlength="20" required />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" minlength="8" required />
+            </label>
+            <p class="hint">
+              Pick something memorable. Avoid using the same password everywhere.
+            </p>
+            <button type="submit">Sign up</button>
+          </form>
+        </article>
+
+        <article class="card">
+          <h2>Sign in</h2>
+          <form id="login-form" autocomplete="off">
+            <label>
+              Username
+              <input type="text" name="username" required />
+            </label>
+            <label>
+              Password
+              <input type="password" name="password" required />
+            </label>
+            <button type="submit">Sign in</button>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="/login.js"></script>
+  </body>
+</html>

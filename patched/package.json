@@ -1,0 +1,22 @@
+{
+  "name": "squeak-assignment4-patched",
+  "version": "1.0.0",
+  "description": "Patched Squeak!",
+  "main": "patched_server.js",
+  "scripts": {
+    "start": "node --env-file=.env patched_server.js",
+    "dev": "nodemon --exec \"node --env-file=.env\" patched_server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongodb": "^6.3.0",
+    "mustache-express": "^1.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "private": true
+}
